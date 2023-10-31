@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <memory.h>
 
-char *read_digits() {
-    int capacity = 0, size = 0;
+char *read_digits(int *size) {
+    int capacity = 0;
     char *input = NULL, c;
 
     while ((c = getchar()) != '\n' && c != EOF) {
-        if (size + 1 >= capacity) {
+        if (*size + 1 >= capacity) {
             capacity = capacity == 0 ? 2 : capacity * 2;
             char *temp = realloc(input, capacity);
 
@@ -16,13 +16,13 @@ char *read_digits() {
                 return NULL;
             }
             
-            memset(temp + size, 0, capacity - size);
+            memset(temp + *size, 0, capacity - *size);
             input = temp;
         }
-        input[(size)++] = c;
+        input[(*size)++] = c;
     }
 
-    if (size == 0 && c == EOF) {
+    if (*size == 0 && c == EOF) {
         free(input);
         return NULL;
     }

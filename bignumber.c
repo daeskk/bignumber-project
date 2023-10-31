@@ -16,9 +16,9 @@ static struct big_number *create_big_number(char *digits, bool is_negative) {
         return NULL;
     }
 
+    number->negative = is_negative;
     number->length = strlen(digits);
     number->digits = calloc(number->length + 1, sizeof(char));
-    number->negative = is_negative;
     
     if (!number->digits) {
         free(number);

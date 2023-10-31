@@ -18,9 +18,12 @@ struct big_number {
 struct calculation {
     enum operation operation;
     struct big_number numbers[2];
+    struct big_number result;
 };
 
 struct big_number *read_big_number();
+
+char *add_big_numbers(char *num1, char *num2);
 
 void destroy_big_number(struct big_number *number);
 
