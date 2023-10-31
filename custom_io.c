@@ -2,30 +2,31 @@
 #include <stdlib.h>
 #include <memory.h>
 
-char *read_input() {
-    char c;
-    char *input = NULL;
+char *read_digits() {
     int capacity = 0, size = 0;
+    char *input = NULL, c;
 
     while ((c = getchar()) != '\n' && c != EOF) {
-        if (size + 1 >= capacity) { 
+        if (size + 1 >= capacity) {
             capacity = capacity == 0 ? 2 : capacity * 2;
-            char *temp_input = realloc(input, capacity);
-            if (!temp_input) {
+            char *temp = realloc(input, capacity);
+
+            if (!temp) {
                 free(input);
                 return NULL;
             }
-            memset(temp_input + size, 0, capacity - size); 
-            input = temp_input;
+            
+            memset(temp + size, 0, capacity - size);
+            input = temp;
         }
-        if (c == EOF && size == 0) { 
-            free(input);
-            return NULL;
-        }
-        input[size++] = c;
+        input[(size)++] = c;
     }
 
-    input[size] = '\0';
+    if (size == 0 && c == EOF) {
+        free(input);
+        return NULL;
+    }
 
+    
     return input;
 }

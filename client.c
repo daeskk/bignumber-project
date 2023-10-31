@@ -6,11 +6,15 @@
 
 int main() {
     while(1) {
-        char *tst = read_input();
-        struct big_number *tst2 = create_big_number(tst);
+        struct big_number *bg1 = read_big_number();
+        struct big_number *bg2 = read_big_number();
+        char op = getchar();
 
-        printf("Number: %s\n", tst2->digits);
+        PRINT_BIG_NUMBER(bg1);
+        PRINT_BIG_NUMBER(bg2);
+        printf("operation: %c\n", op);
 
-        destroy_big_number(tst2);
+        destroy_big_number(bg1);
+        destroy_big_number(bg2);
     }
 }

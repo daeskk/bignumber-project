@@ -1,6 +1,8 @@
 #ifndef __BIGNUMBER_H__
 #define __BIGNUMBER_H__
 
+#include <stdbool.h>
+
 enum operation {
     ADDITION,
     SUBTRACTION,
@@ -9,7 +11,8 @@ enum operation {
 
 struct big_number {
     char *digits;
-    int length;
+    size_t length;
+    bool negative;
 };
 
 struct calculation {
@@ -17,7 +20,8 @@ struct calculation {
     struct big_number numbers[2];
 };
 
-struct big_number *create_big_number(char *digits);
+struct big_number *read_big_number();
+
 void destroy_big_number(struct big_number *number);
 
 static inline enum operation convert_operation(char op) {
@@ -30,5 +34,16 @@ static inline enum operation convert_operation(char op) {
             return MULTIPLICATION;
     }
 }
+
+#define PRINT_BIG_NUMBER(bn) do { \
+    if ((bn) != NULL) { \
+        if ((bn)->negative) { \
+            printf("-"); \
+        } \
+        printf("%s\n", (bn)->digits); \
+    } else { \
+        printf("Null big_number\n"); \
+    } \
+} while (0)
 
 #endif
