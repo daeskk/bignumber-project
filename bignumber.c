@@ -12,8 +12,7 @@ static struct big_number *create_big_number(char *digits, bool is_negative) {
     struct big_number *number = malloc(sizeof(struct big_number));
     
     if (!number) {
-        free(digits);
-        return NULL;
+        free(digits); return NULL;
     }
 
     number->negative = is_negative;
@@ -21,8 +20,7 @@ static struct big_number *create_big_number(char *digits, bool is_negative) {
     number->digits = calloc(number->length + 1, sizeof(char));
     
     if (!number->digits) {
-        free(number);
-        return NULL;
+        free(number); return NULL;
     }
 
     strcpy(number->digits, digits);
@@ -40,13 +38,17 @@ struct big_number *read_big_number() {
 
     bool is_negative = input[0] == '-';
     if (is_negative) {
-        memmove(input, input + 1, size); // removing the negative sign
+        memmove(input, input + 1, size);
         size--; 
     }
 
     input[size] = '\0';
 
-    return create_big_number(input, is_negative);
+    struct big_number *bn = create_big_number(input, is_negative);
+
+    free(input);
+
+    return bn;
 }
 
 void destroy_big_number(struct big_number *number) {

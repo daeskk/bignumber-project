@@ -5,7 +5,7 @@
 #include "custom_io.h"
 
 int main() {
-    while(1) {
+    // while(1) {
         struct big_number *bg1 = read_big_number();
         struct big_number *bg2 = read_big_number();
         char op = getchar();
@@ -16,5 +16,5 @@ int main() {
 
         destroy_big_number(bg1);
         destroy_big_number(bg2);
-    }
+    // }
 }
