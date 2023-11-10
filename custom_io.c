@@ -11,7 +11,7 @@ char *read_digits(int *size) {
         if (*size + 1 >= capacity) {
             int old_capacity = capacity;
             capacity = capacity == 0 ? 2 : capacity * 2;
-            char *temp = realloc(input, (capacity + 1) * sizeof(char));
+            char *temp = realloc(input, capacity * sizeof(char));
 
             if (!temp) {
                 free(input); return NULL;

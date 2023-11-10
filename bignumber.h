@@ -5,14 +5,11 @@
 
 struct big_number {
     char *digits;
-    size_t length;
+    int length;
     bool negative;
 };
 
 struct big_number *read_big_number();
-
-char *add_big_numbers(char *num1, char *num2);
-
 void destroy_big_number(struct big_number *number);
 
 #define PRINT_BIG_NUMBER(bn) do { \

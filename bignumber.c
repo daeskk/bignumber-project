@@ -31,6 +31,7 @@ struct big_number *read_big_number() {
     }
 
     bool is_negative = input[0] == '-';
+    
     if (is_negative) {
         memmove(input, input + 1, size);
         size--; 
