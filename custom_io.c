@@ -27,7 +27,5 @@ char *read_digits(int *size) {
         free(input); return NULL;
     }
 
-    input[*size] = '\0';
-
     return input;
 }

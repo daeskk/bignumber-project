@@ -1,20 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "bignumber.h"
+#include "expression.h"
 #include "custom_io.h"
 
 int main() {
-    // while(1) {
-        struct big_number *bg1 = read_big_number();
-        struct big_number *bg2 = read_big_number();
-        char op = getchar();
+    while(1) {
+        struct expression *expression = create_expression();
 
-        PRINT_BIG_NUMBER(bg1);
-        PRINT_BIG_NUMBER(bg2);
-        printf("operation: %c\n", op);
+        PRINT_EXPRESSION(expression);
 
-        destroy_big_number(bg1);
-        destroy_big_number(bg2);
-    // }
+        destroy_expression(expression);
+    }
 }

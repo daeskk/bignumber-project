@@ -6,7 +6,7 @@
 #include "bignumber.h"
 #include "custom_io.h"
 
-static struct big_number *create_big_number(char *digits, bool is_negative) {
+static struct big_number *create_big_number(char *digits, int size, bool is_negative) {
     assert(digits != NULL);
     
     struct big_number *number = malloc(sizeof(struct big_number));
@@ -16,16 +16,8 @@ static struct big_number *create_big_number(char *digits, bool is_negative) {
     }
 
     number->negative = is_negative;
-    number->length = strlen(digits);
-    number->digits = calloc(number->length + 1, sizeof(char));
-    
-    if (!number->digits) {
-        free(number); return NULL;
-    }
-
-    strcpy(number->digits, digits);
-
-    free(digits); digits = NULL;
+    number->length = size;
+    number->digits = digits;
 
     return number;
 }
@@ -46,7 +38,7 @@ struct big_number *read_big_number() {
 
     input[size] = '\0';
 
-    return create_big_number(input, is_negative);
+    return create_big_number(input, size, is_negative);
 }
 
 void destroy_big_number(struct big_number *number) {
