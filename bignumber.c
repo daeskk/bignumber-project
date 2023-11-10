@@ -25,15 +25,17 @@ static struct big_number *create_big_number(char *digits, bool is_negative) {
 
     strcpy(number->digits, digits);
 
+    free(digits); digits = NULL;
+
     return number;
 }
 
 struct big_number *read_big_number() {
     int size = 0;
     char *input = read_digits(&size);
+    
     if (!input || size == 0) {
-        free(input);
-        return NULL;
+        free(input); return NULL;
     }
 
     bool is_negative = input[0] == '-';
@@ -44,11 +46,7 @@ struct big_number *read_big_number() {
 
     input[size] = '\0';
 
-    struct big_number *bn = create_big_number(input, is_negative);
-
-    free(input);
-
-    return bn;
+    return create_big_number(input, is_negative);
 }
 
 void destroy_big_number(struct big_number *number) {
