@@ -1,5 +1,5 @@
 OBJECTS=./build/bignumber.o ./build/custom_io.o
-INCLUDES=-I/path/to/headers
+INCLUDES=-I ./
 COMPILATION_FLAGS=gcc -std=c99 -g
 LINKER_FLAGS=-lm
 
