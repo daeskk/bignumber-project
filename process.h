@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "expression.h"
 
+// Definições dos processos que serão realizados
 struct process {
     struct expression **expressions;
     int size;

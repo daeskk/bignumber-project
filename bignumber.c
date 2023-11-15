@@ -6,6 +6,7 @@
 
 #include "bignumber.h"
 
+// Função para criar número com alocação de memória dinâmica
 struct big_number *create_big_number(char *digits, int size, bool is_negative) {
     assert(digits != NULL);
     
@@ -22,6 +23,7 @@ struct big_number *create_big_number(char *digits, int size, bool is_negative) {
     return number;
 }
 
+// Função para receber os inputs
 static char *read_input(int *size) {
     int capacity = 0;
     char *input = NULL;
@@ -50,6 +52,7 @@ static char *read_input(int *size) {
     return input;
 }
 
+// Recebe o número como uma string, identificando como negativo se possuir  '-' no início
 struct big_number *read_big_number() {
     int size = 0;
     char *input = read_input(&size);
@@ -70,6 +73,7 @@ struct big_number *read_big_number() {
     return create_big_number(input, size, is_negative);
 }
 
+// Função para liberar a memória utilizada
 void destroy_big_number(struct big_number *number) {
     free(number->digits); 
     free(number);

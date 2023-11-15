@@ -4,12 +4,14 @@
 #include <stdio.h>
 #include "bignumber.h"
 
+// Definição das operações que podem ser realizadas
 enum operation {
     ADDITION,
     SUBTRACTION,
     MULTIPLICATION,
 };
 
+// Definição das expressões
 struct expression {
     enum operation operation;
     struct big_number *numbers[2];
@@ -20,6 +22,7 @@ struct expression *create_expression();
 void calculate_expression(struct expression *expression);
 void destroy_expression(struct expression *expression);
 
+// Define a operação a ser realizada de acordo com o sinal recebido
 static inline enum operation convert_operation(char op) {
     switch (op) {
         case '+':
@@ -31,6 +34,7 @@ static inline enum operation convert_operation(char op) {
     }
 }
 
+// Output da expressão final
 #define PRINT_EXPRESSION(calc) do { \
     if ((calc) != NULL) { \
         PRINT_BIG_NUMBER((calc)->numbers[0]); \

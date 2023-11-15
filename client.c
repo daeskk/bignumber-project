@@ -1,3 +1,4 @@
+// Código final utilizado para run do projeto - para rodar: ./client no terminal
 #include <stdio.h>
 #include <stdlib.h>
 

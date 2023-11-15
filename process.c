@@ -4,6 +4,7 @@
 
 #include "process.h"
 
+// Cria um novo processo com memória dinâmica
 struct process *create_process() {
     struct process *new_process = malloc(sizeof(struct process));
     
@@ -15,6 +16,7 @@ struct process *create_process() {
     return new_process;
 }
 
+// Incrementa as expressões a serem realizadas
 void add_process(struct process *process, struct expression *expression) {
     assert(process != NULL && expression != NULL);
 
@@ -28,6 +30,7 @@ void add_process(struct process *process, struct expression *expression) {
     process->expressions[process->size++] = expression;
 }
 
+// Libera a memória utilizada
 void destroy_process(struct process *process) {
     assert(process != NULL);
 
@@ -39,6 +42,7 @@ void destroy_process(struct process *process) {
     free(process);
 }
 
+// Att: falta coisa aqui?
 void print_process(struct process *process) {
     assert(process != NULL);
 }

@@ -3,6 +3,7 @@
 
 #include <string.h>
 
+// Altera a ordem dos caracteres
 void reverse_string(char *str) {
     int length = strlen(str);
     for (int i = 0; i < length / 2; i++) {
