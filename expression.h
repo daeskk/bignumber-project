@@ -1,6 +1,7 @@
 #ifndef __expression_H__
 #define __expression_H__
 
+#include <stdio.h>
 #include "bignumber.h"
 
 enum operation {
@@ -16,7 +17,7 @@ struct expression {
 };
 
 struct expression *create_expression();
-void calculate(struct expression *expression);
+void calculate_expression(struct expression *expression);
 void destroy_expression(struct expression *expression);
 
 static inline enum operation convert_operation(char op) {

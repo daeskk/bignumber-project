@@ -1,4 +1,4 @@
-OBJECTS=./build/bignumber.o ./build/custom_io.o ./build/expression.o
+OBJECTS=./build/bignumber.o ./build/custom_io.o ./build/expression.o ./build/process.o
 INCLUDES=-I ./
 COMPILATION_FLAGS=gcc -std=c99 -g
 LINKER_FLAGS=-lm
@@ -21,3 +21,6 @@ clean:
 
 ./build/expression.o: ./expression.c
 	$(COMPILATION_FLAGS) $(INCLUDES) -c ./expression.c -o ./build/expression.o
+
+./build/process.o: ./process.c
+	$(COMPILATION_FLAGS) $(INCLUDES) -c ./process.c -o ./build/process.o

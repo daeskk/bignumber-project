@@ -43,6 +43,6 @@ struct big_number *read_big_number() {
 }
 
 void destroy_big_number(struct big_number *number) {
-    free(number->digits);
+    free(number->digits); 
     free(number);
 }
