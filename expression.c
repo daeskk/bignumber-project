@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "expression.h"
+#include "helpers.h"
 
 static struct big_number *add(struct big_number *bg1, struct big_number *bg2) {
     struct big_number *result = NULL;

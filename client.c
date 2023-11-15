@@ -3,18 +3,15 @@
 
 #include "process.h"
 #include "expression.h"
-#include "custom_io.h"
 
-#define DEBUG 0
+#define DEBUG 1
 
 int main() {
     struct process *process = create_process();
     
     while(1) {
         struct expression *expression = create_expression();
-
         add_process(process, expression);
-
         calculate_expression(expression);
         
         #if DEBUG

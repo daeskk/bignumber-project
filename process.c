@@ -41,10 +41,4 @@ void destroy_process(struct process *process) {
 
 void print_process(struct process *process) {
     assert(process != NULL);
-
-    for (int i = 0; i < process->size; i++) {
-        PRINT_EXPRESSION(process->expressions[i]);
-    }
-
-    printf("\n==========\n");
 }
