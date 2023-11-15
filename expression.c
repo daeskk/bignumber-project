@@ -88,19 +88,6 @@ static struct big_number *add(struct big_number *bg1, struct big_number *bg2) {
         } else if (bg1->length < bg2->length) {
             result = subtract(bg2, bg1);
             result->negative = bg2->negative;
-        } else {
-            for (int i = 0; i < bg1->length; i++) {
-                if (bg1->digits[i] > bg2->digits[i]) {
-                    result = subtract(bg1, bg2);
-                    result->negative = bg1->negative;
-                    break;
-                } else if (bg1->digits[i] < bg2->digits[i]) {
-                    result = subtract(bg2, bg1);
-                    result->negative = bg2->negative;
-                    break;
-                }
-            }
-        }
     }
     return result;
 }
