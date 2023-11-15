@@ -17,11 +17,6 @@ int main() {
         #if DEBUG
             PRINT_EXPRESSION(expression);
         #endif
-
-
-        if (getchar() == '\n' || getchar() == EOF) {
-            break;
-        }
     }
 
     print_process(process);
