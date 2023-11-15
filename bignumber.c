@@ -6,7 +6,7 @@
 
 #include "bignumber.h"
 
-static struct big_number *create_big_number(char *digits, int size, bool is_negative) {
+struct big_number *create_big_number(char *digits, int size, bool is_negative) {
     assert(digits != NULL);
     
     struct big_number *number = malloc(sizeof(struct big_number));

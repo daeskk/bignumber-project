@@ -10,6 +10,7 @@ struct big_number {
 };
 
 struct big_number *read_big_number();
+struct big_number *create_big_number(char *digits, int size, bool is_negative);
 void destroy_big_number(struct big_number *number);
 
 #define PRINT_BIG_NUMBER(bn) do { \
