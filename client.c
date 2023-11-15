@@ -10,6 +10,10 @@ int main() {
     while(1) {
         struct expression *expression = create_expression();
 
+
+
+        calculate(expression);
+        
         #if DEBUG
             PRINT_EXPRESSION(expression);
         #endif

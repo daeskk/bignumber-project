@@ -16,6 +16,7 @@ struct expression {
 };
 
 struct expression *create_expression();
+void calculate(struct expression *expression);
 void destroy_expression(struct expression *expression);
 
 static inline enum operation convert_operation(char op) {
@@ -34,6 +35,7 @@ static inline enum operation convert_operation(char op) {
         PRINT_BIG_NUMBER((calc)->numbers[0]); \
         PRINT_BIG_NUMBER((calc)->numbers[1]); \
         printf("operation: %d\n", (calc)->operation); \
+        PRINT_BIG_NUMBER((calc)->result); \
     } else { \
         printf("Null expression\n"); \
     } \

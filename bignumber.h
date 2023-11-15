@@ -19,7 +19,7 @@ void destroy_big_number(struct big_number *number);
         } \
         printf("%s\n", (bn)->digits); \
     } else { \
-        printf("Null big_number\n"); \
+        printf("NULL big_number\n"); \
     } \
 } while (0)
 
