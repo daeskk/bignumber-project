@@ -23,3 +23,9 @@ $ make valgrind
 ```
 $ make clean
 ```
+
+## Alternative way of executing the project
+
+```
+$ ./automake.sh
+```

@@ -12,8 +12,8 @@ static struct big_number *add_positive_big_numbers(struct big_number *bg1, struc
     int i = 0;
 
     for (; i < max_length; i++) {
-        int digit1 = i < bg1->length ? bg1->digits[i] - '0' : 0;
-        int digit2 = i < bg2->length ? bg2->digits[i] - '0' : 0;
+        int digit1 = i < bg1->length ? bg1->digits[bg1->length - i - 1] - '0' : 0;
+        int digit2 = i < bg2->length ? bg2->digits[bg2->length - i - 1] - '0' : 0;
 
         int sum = digit1 + digit2 + rest;
         result[i] = (sum % 10) + '0';
@@ -23,6 +23,8 @@ static struct big_number *add_positive_big_numbers(struct big_number *bg1, struc
     if (rest > 0) {
         result[i++] = rest + '0';
     }
+
+    reverse_string(result);
 
     return create_big_number(result, i, false);
 }

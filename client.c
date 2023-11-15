@@ -15,7 +15,9 @@ int main() {
         calculate_expression(expression);
         
         #if DEBUG
+            printf("\n=======================\n");
             PRINT_EXPRESSION(expression);
+            printf("======================\n");
         #endif
     }
 
