@@ -7,6 +7,7 @@
 
 #define DEBUG 1
 
+// ATENÇÃO: TIRAR TODOS OS PRINTS QUE NÃO SEJAM O NUMERO FINAL, SE PROF USAR TESTE AUTOMATIZADO NÃO VAI PASSAR
 int main() {
     struct process *process = create_process();
     
