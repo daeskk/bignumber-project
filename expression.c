@@ -95,6 +95,7 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
         int carry = 0;
         for (int j = 0; j < len2 || carry; j++) {
             int sum = result[i + j] + (num1->digits[len1 - i - 1] - '0') * (j < len2 ? num2->digits[len2 - j - 1] - '0' : 0) + carry;
+            //  (j < len2 ? num2->digits[len2 - j - 1] - '0' : 0) é equivalente a um if/else, depois do ? é o if e depois do : é o else
             result[i + j] = sum % 10;
             carry = sum / 10;
         }
