@@ -81,37 +81,35 @@ static struct big_number *subtract(struct big_number *bg1, struct big_number *bg
 }
 
 
-// Função para multiplicar dois big numbers
+// Multiplicar dois big numbers
 struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
-    
     int len1 = num1->length;
     int len2 = num2->length;
     int len = len1 + len2;
 
     // Alocando memória para result
-    char *result = calloc( len + 1, sizeof(char));
+    char *result = calloc(len + 1, sizeof(char));
 
     // Multiplicando
     for (int i = 0; i < len1; i++) {
         int carry = 0;
-        for (int j = 0; j < len2; j++) {
-            int product = (num1->digits[len1 - i - 1] - '0') * (num2->digits[len2 - j - 1] - '0') + carry;
-            result[i + j] = product % 10;
-            carry = product / 10;
+        for (int j = 0; j < len2 || carry; j++) {
+            int sum = result[i + j] + (num1->digits[len1 - i - 1] - '0') * (j < len2 ? num2->digits[len2 - j - 1] - '0' : 0) + carry;
+            result[i + j] = sum % 10;
+            carry = sum / 10;
         }
-        result[i + len2] = carry;
-    }
-
- // Invertendo o array de resultado
-    for (int i = 0; i < len / 2; i++) {
-        int temp = result[i];
-        result[i] = result[len - i - 1];
-        result[len - i - 1] = temp;
     }
 
     // Convertendo os dígitos de volta para caracteres
     for (int i = 0; i < len; i++) {
         result[i] += '0';
+    }
+
+    // Invertendo o array de resultado
+    for (int i = 0; i < len / 2; i++) {
+        char temp = result[i];
+        result[i] = result[len - i - 1];
+        result[len - i - 1] = temp;
     }
 
     // Encontrando o primeiro dígito que não seja zero
@@ -123,7 +121,9 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
     // Criando uma nova string sem os zeros à esquerda
     int new_len = len - start;
     char *final_result = malloc((new_len + 1) * sizeof(char));
-    memcpy(final_result, &result[start], new_len);
+    for (int i = 0; i < new_len; i++) {
+        final_result[i] = result[start + i];
+    }
     final_result[new_len] = '\0'; // Adicionando o caractere nulo no final
 
     // Liberando a memória do array de resultado original
@@ -134,6 +134,8 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
 
     return create_big_number(final_result, new_len, result_negative);
 }
+
+
 
 // Subtração - sinais iguais soma, sinais diferentes subtrai
 static struct big_number *add(struct big_number *bg1, struct big_number *bg2) {
