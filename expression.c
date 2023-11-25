@@ -27,7 +27,9 @@ static struct big_number *add_positive_big_numbers(struct big_number *bg1, struc
 
     reverse_string(result);
 
-    return create_big_number(result, i, false);
+    bool negative_result = bg1->negative && bg2->negative;
+
+    return create_big_number(result, i, negative_result);
 }
 
 // Processo de subtração de números positivos
@@ -133,7 +135,7 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
 
 
 
-// Subtração - sinais iguais soma, sinais diferentes subtrai
+// Adição - sinais iguais soma, sinais diferentes subtrai
 static struct big_number *add(struct big_number *bg1, struct big_number *bg2) {
     struct big_number *result = NULL;
     if (bg1->negative == bg2->negative) {

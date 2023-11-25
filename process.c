@@ -42,11 +42,10 @@ void destroy_process(struct process *process) {
     free(process);
 }
 
-// Att: falta coisa aqui?
 void print_process(struct process *process) {
     assert(process != NULL);
 
     for (int i = 0; i < process->size; i++) {
-        printf("%s\n", process->expressions[i]->result->digits);
+        PRINT_BIG_NUMBER(process->expressions[i]->result);
     }
 }
