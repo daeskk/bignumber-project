@@ -195,6 +195,6 @@ void calculate_expression(struct expression *expression) {
 void destroy_expression(struct expression *expression) {
     destroy_big_number(expression->numbers[0]);
     destroy_big_number(expression->numbers[1]);
-    free(expression->result);
+    destroy_big_number(expression->result);
     free(expression);
 }
