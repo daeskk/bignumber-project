@@ -45,4 +45,8 @@ void destroy_process(struct process *process) {
 // Att: falta coisa aqui?
 void print_process(struct process *process) {
     assert(process != NULL);
+
+    for (int i = 0; i < process->size; i++) {
+        printf("%s\n", process->expressions[i]->result->digits);
+    }
 }

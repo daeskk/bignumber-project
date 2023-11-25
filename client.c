@@ -5,9 +5,8 @@
 #include "process.h"
 #include "expression.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
-// ATENÇÃO: TIRAR TODOS OS PRINTS QUE NÃO SEJAM O NUMERO FINAL, SE PROF USAR TESTE AUTOMATIZADO NÃO VAI PASSAR
 int main() {
     struct process *process = create_process();
     
@@ -21,6 +20,12 @@ int main() {
             PRINT_EXPRESSION(expression);
             printf("======================\n");
         #endif
+
+        char next_char = getchar();
+        
+        if (next_char == EOF || next_char == '\n') break;
+
+        ungetc(next_char, stdin);
     }
 
     print_process(process);

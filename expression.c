@@ -106,12 +106,7 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
         result[i] += '0';
     }
 
-    // Invertendo o array de resultado
-    for (int i = 0; i < len / 2; i++) {
-        char temp = result[i];
-        result[i] = result[len - i - 1];
-        result[len - i - 1] = temp;
-    }
+    reverse_string(result);
 
     // Encontrando o primeiro dígito que não seja zero
     int start = 0;
@@ -121,11 +116,11 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
 
     // Criando uma nova string sem os zeros à esquerda
     int new_len = len - start;
-    char *final_result = malloc((new_len + 1) * sizeof(char));
+    char *final_result = calloc((new_len + 1), sizeof(char));
+    
     for (int i = 0; i < new_len; i++) {
         final_result[i] = result[start + i];
     }
-    final_result[new_len] = '\0'; // Adicionando o caractere nulo no final
 
     // Liberando a memória do array de resultado original
     free(result);
