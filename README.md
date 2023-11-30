@@ -29,3 +29,9 @@ $ make clean
 ```
 $ ./automake.sh
 ```
+
+## Running the autotests
+
+```
+$ ./autotest.sh
+```
