@@ -30,7 +30,6 @@
 
 # Executables
 *.exe
-*.out
 *.app
 *.i*86
 *.x86_64
@@ -53,3 +52,5 @@ dkms.conf
 
 client
 .vscode
+
+outputs/*.out

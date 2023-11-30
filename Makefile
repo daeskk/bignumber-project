@@ -11,6 +11,7 @@ valgrind: all
 
 clean:
 	rm -f ./client
+	rm -f ./outputs/*.out
 	rm -f ./build/*.o
 
 ./build/bignumber.o: ./bignumber.c

@@ -4,10 +4,12 @@
 #include "expression.h"
 #include "helpers.h"
 
+#define EXTRA_DIGITS 2
+
 // Processo de adição de números positivos
 static struct big_number *add_positive_big_numbers(struct big_number *bg1, struct big_number *bg2) {
     int max_length = bg1->length > bg2->length ? bg1->length : bg2->length;
-    char *result = calloc(max_length + 1, sizeof(char));
+    char *result = calloc(max_length + EXTRA_DIGITS, sizeof(char));
 
     int rest = 0;
     int i = 0;
@@ -35,7 +37,7 @@ static struct big_number *add_positive_big_numbers(struct big_number *bg1, struc
 // Processo de subtração de números positivos
 static struct big_number *subtract_positive_big_numbers(struct big_number *bg1, struct big_number *bg2) {
     int max_length = bg1->length;
-    char *result = calloc(max_length + 1, sizeof(char));
+    char *result = calloc(max_length + EXTRA_DIGITS, sizeof(char));
 
     int rest = 0;
     int i = 0;
@@ -90,7 +92,7 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
     int len = len1 + len2;
 
     // Alocando memória para result
-    char *result = calloc(len + 1, sizeof(char));
+    char *result = calloc(len + EXTRA_DIGITS, sizeof(char));
 
     // Multiplicando
     for (int i = 0; i < len1; i++) {
