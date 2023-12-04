@@ -9,7 +9,8 @@
 // Processo de adição de números positivos
 static struct big_number *add_positive_big_numbers(struct big_number *bg1, struct big_number *bg2) {
     int max_length = bg1->length > bg2->length ? bg1->length : bg2->length;
-    char *result = calloc(max_length + EXTRA_DIGITS, sizeof(char));
+    int str_length = max_length + EXTRA_DIGITS;
+    char *result = calloc(str_length, sizeof(char));
 
     int rest = 0;
     int i = 0;
@@ -29,15 +30,30 @@ static struct big_number *add_positive_big_numbers(struct big_number *bg1, struc
 
     reverse_string(result);
 
-    bool negative_result = bg1->negative && bg2->negative;
+    int start = 0;
+    while (result[start] == '0' && start < i - 1) {
+        start++;
+    }
 
-    return create_big_number(result, i, negative_result);
+    int new_len = i - start;
+    char *final_result = calloc((new_len + 1), sizeof(char));
+    
+    for (int i = 0; i < new_len; i++) {
+        final_result[i] = result[start + i];
+    }
+
+    free(result);
+
+    bool negative_result = bg1->negative && bg2->negative && !is_zero_string(result, i);
+
+    return create_big_number(final_result, i, negative_result);
 }
 
 // Processo de subtração de números positivos
 static struct big_number *subtract_positive_big_numbers(struct big_number *bg1, struct big_number *bg2) {
     int max_length = bg1->length;
-    char *result = calloc(max_length + EXTRA_DIGITS, sizeof(char));
+    int str_length = max_length + EXTRA_DIGITS;
+    char *result = calloc(str_length, sizeof(char));
 
     int rest = 0;
     int i = 0;
@@ -62,7 +78,21 @@ static struct big_number *subtract_positive_big_numbers(struct big_number *bg1, 
 
     reverse_string(result);
 
-    return create_big_number(result, i, false);
+    int start = 0;
+    while (result[start] == '0' && start < i - 1) {
+        start++;
+    }
+
+    int new_len = i - start;
+    char *final_result = calloc((new_len + 1), sizeof(char));
+    
+    for (int i = 0; i < new_len; i++) {
+        final_result[i] = result[start + i];
+    }
+
+    free(result);
+
+    return create_big_number(final_result, i, false);
 }
 
 
@@ -89,10 +119,11 @@ static struct big_number *subtract(struct big_number *bg1, struct big_number *bg
 struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
     int len1 = num1->length;
     int len2 = num2->length;
-    int len = len1 + len2;
+    int len = len1 + len2 + 1; 
+    int str_length = len + EXTRA_DIGITS;
 
     // Alocando memória para result
-    char *result = calloc(len + EXTRA_DIGITS, sizeof(char));
+    char *result = calloc(str_length, sizeof(char));
 
     // Multiplicando
     for (int i = 0; i < len1; i++) {
@@ -130,7 +161,7 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
     free(result);
 
     // Definindo o sinal do resultado
-    bool result_negative = num1->negative != num2->negative;
+    bool result_negative = num1->negative != num2->negative && !is_zero_string(final_result, new_len);
 
     return create_big_number(final_result, new_len, result_negative);
 }

@@ -13,4 +13,8 @@ void reverse_string(char *str) {
     }
 }
 
+bool is_zero_string(const char *string, int length) {
+    return length == 1 && string[0] == '0';
+}
+
 #endif
