@@ -1,7 +1,7 @@
-OBJECTS=./build/bignumber.o ./build/expression.o ./build/process.o
-INCLUDES=-I ./
-COMPILATION_FLAGS=gcc -std=c99 -g
-LINKER_FLAGS=-lm
+OBJECTS= ./build/bignumber.o ./build/expression.o ./build/process.o ./build/helpers.o 
+INCLUDES= -I ./
+COMPILATION_FLAGS= gcc -std=c99 -g
+LINKER_FLAGS= -lm
 
 all: $(OBJECTS)
 	$(COMPILATION_FLAGS) $(INCLUDES) client.c $(OBJECTS) $(LINKER_FLAGS) -o ./client
@@ -22,3 +22,6 @@ clean:
 
 ./build/process.o: ./process.c
 	$(COMPILATION_FLAGS) $(INCLUDES) -c ./process.c -o ./build/process.o
+
+./build/helpers.o: ./helpers.c
+	$(COMPILATION_FLAGS) $(INCLUDES) -c ./helpers.c -o ./build/helpers.o

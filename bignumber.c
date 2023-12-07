@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <memory.h>
 
+#include "helpers.h"
 #include "bignumber.h"
 
 // Função para criar número com alocação de memória dinâmica
@@ -56,7 +57,7 @@ static char *read_input(int *size) {
 struct big_number *read_big_number() {
     int size = 0;
     char *input = read_input(&size);
-    
+
     if (!input || size == 0) {
         free(input); return NULL;
     }
@@ -70,7 +71,13 @@ struct big_number *read_big_number() {
 
     input[size] = '\0';
 
-    return create_big_number(input, size, is_negative);
+    int new_len = 0;
+
+    char *final_input = remove_leading_zeroes(input, size, &new_len);
+
+    free(input);
+
+    return create_big_number(final_input, new_len, is_negative);
 }
 
 // Função para liberar a memória utilizada

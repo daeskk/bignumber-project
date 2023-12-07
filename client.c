@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 #include "process.h"
-#include "expression.h"
 
 int main() {
     struct process *process = create_process();

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "expression.h"
 #include "helpers.h"
@@ -30,23 +31,15 @@ static struct big_number *add_positive_big_numbers(struct big_number *bg1, struc
 
     reverse_string(result);
 
-    int start = 0;
-    while (result[start] == '0' && start < i - 1) {
-        start++;
-    }
+    int new_len = 0;
 
-    int new_len = i - start;
-    char *final_result = calloc((new_len + 1), sizeof(char));
-    
-    for (int i = 0; i < new_len; i++) {
-        final_result[i] = result[start + i];
-    }
+    char *final_result = remove_leading_zeroes(result, i, &new_len);
 
     free(result);
 
-    bool negative_result = bg1->negative && bg2->negative && !is_zero_string(result, i);
+    bool negative_result = bg1->negative && bg2->negative && !is_zero_string(result, new_len);
 
-    return create_big_number(final_result, i, negative_result);
+    return create_big_number(final_result, new_len, negative_result);
 }
 
 // Processo de subtração de números positivos
@@ -78,21 +71,13 @@ static struct big_number *subtract_positive_big_numbers(struct big_number *bg1, 
 
     reverse_string(result);
 
-    int start = 0;
-    while (result[start] == '0' && start < i - 1) {
-        start++;
-    }
+    int new_len = 0;
 
-    int new_len = i - start;
-    char *final_result = calloc((new_len + 1), sizeof(char));
-    
-    for (int i = 0; i < new_len; i++) {
-        final_result[i] = result[start + i];
-    }
+    char *final_result = remove_leading_zeroes(result, i, &new_len);
 
     free(result);
 
-    return create_big_number(final_result, i, false);
+    return create_big_number(final_result, new_len, false);
 }
 
 
@@ -143,19 +128,9 @@ struct big_number* multiply(struct big_number* num1, struct big_number* num2) {
 
     reverse_string(result);
 
-    // Encontrando o primeiro dígito que não seja zero
-    int start = 0;
-    while (result[start] == '0' && start < len - 1) {
-        start++;
-    }
+    int new_len = 0;
 
-    // Criando uma nova string sem os zeros à esquerda
-    int new_len = len - start;
-    char *final_result = calloc((new_len + 1), sizeof(char));
-    
-    for (int i = 0; i < new_len; i++) {
-        final_result[i] = result[start + i];
-    }
+    char *final_result = remove_leading_zeroes(result, len, &new_len);
 
     // Liberando a memória do array de resultado original
     free(result);
